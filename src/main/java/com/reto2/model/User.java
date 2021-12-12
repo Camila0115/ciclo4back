@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User implements Comparable<User> {
     @Id
     private Integer id;
     private String identification;
@@ -116,6 +116,11 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public int compareTo(User otherUser) {
+        return this.getId().compareTo(otherUser.getId());
     }
 
 }

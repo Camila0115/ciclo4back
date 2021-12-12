@@ -5,6 +5,7 @@ import com.reto2.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,9 @@ public class UserRepository {
     private UserInterface userCrudRepository;
 
     public List<User> getAll() {
-        return (List<User>) userCrudRepository.findAll();
+        List<User> usuarios = userCrudRepository.findAll();
+        Collections.sort(usuarios);
+        return usuarios;
     }
 
     public Optional<User> getUser(int id) {
