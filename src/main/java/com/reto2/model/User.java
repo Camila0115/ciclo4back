@@ -20,7 +20,7 @@ public class User {
     private String identification;
     private String name;
     private Date birthtDay;
-    private Integer monthBirthtDay;
+    private String monthBirthtDay;
     private String address;
     private String cellPhone;
     private String email;
@@ -37,11 +37,11 @@ public class User {
         this.birthtDay = birthtDay;
     }
 
-    public Integer getMonthBirthtDay() {
+    public String getMonthBirthtDay() {
         return this.monthBirthtDay;
     }
 
-    public void setMonthBirthtDay(Integer monthBirthtDay) {
+    public void setMonthBirthtDay(String monthBirthtDay) {
         this.monthBirthtDay = monthBirthtDay;
     }
 
