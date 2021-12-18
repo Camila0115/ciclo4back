@@ -34,8 +34,8 @@ public class UserController {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public void update(@RequestBody User user) {
-        userService.update(user);
+    public User update(@RequestBody User user) {
+        return userService.update(user);
     }
 
     @DeleteMapping("/{id}")
@@ -52,5 +52,10 @@ public class UserController {
     @GetMapping("/emailexist/{email}")
     public boolean emailExists(@PathVariable("email") String email) {
         return userService.emailExists(email);
+    }
+
+    @GetMapping("/birthday/{month}")
+    public List<User> birthDayList(@PathVariable("month") String monthBirthDay) {
+        return userService.birthDayList(monthBirthDay);
     }
 }

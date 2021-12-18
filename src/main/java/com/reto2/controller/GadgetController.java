@@ -34,13 +34,23 @@ public class GadgetController {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public void update(@RequestBody Gadget gadget) {
-        gadgetService.update(gadget);
+    public Gadget update(@RequestBody Gadget gadget) {
+        return gadgetService.update(gadget);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") Integer id) {
         return gadgetService.delete(id);
+    }
+
+    @GetMapping("/price/{price}")
+    public List<Gadget> findByPriceLessThanEqual(@PathVariable("price") double price) {
+        return gadgetService.findByPriceLessThanEqual(price);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Gadget> findByDescriptionLike(@PathVariable("description") String description) {
+        return gadgetService.findByDescriptionLike(description);
     }
 }

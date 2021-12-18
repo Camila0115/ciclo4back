@@ -5,7 +5,6 @@ import com.reto2.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +14,7 @@ public class UserRepository {
     private UserInterface userCrudRepository;
 
     public List<User> getAll() {
-        List<User> usuarios = userCrudRepository.findAll();
-        Collections.sort(usuarios);
-        return usuarios;
+        return (List<User>) userCrudRepository.findAll();
     }
 
     public Optional<User> getUser(int id) {
@@ -43,5 +40,9 @@ public class UserRepository {
 
     public Optional<User> authenticateUser(String email, String password) {
         return userCrudRepository.findByEmailAndPassword(email, password);
+    }
+
+    public List<User> birthDayList(String monthBirthtDay) {
+        return userCrudRepository.findByMonthBirthtDay(monthBirthtDay);
     }
 }

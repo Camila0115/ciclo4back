@@ -98,7 +98,5 @@ public class Gadget {
         this.photography = photography;
     }
 
-   
 
-    
 }

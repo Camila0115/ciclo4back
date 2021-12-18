@@ -21,60 +21,72 @@ public class GadgetService {
         return clotheRepository.getClothe(id);
     }
 
-    public Gadget create(Gadget accesory) {
-        if (accesory.getId() == null) {
-            return accesory;
+    public Gadget create(Gadget gadget) {
+        if (gadget.getId() == null) {
+            return gadget;
         } else {
-            return clotheRepository.create(accesory);
+            return clotheRepository.create(gadget);
         }
     }
 
-    public Gadget update(Gadget accesory) {
+    public Gadget update(Gadget gadget) {
 
-        if (accesory.getId() != null) {
-            Optional<Gadget> accesoryDb = clotheRepository.getClothe(accesory.getId());
-            if (!accesoryDb.isEmpty()) {
+        if (gadget.getId() != null) {
+            Optional<Gadget> dbGadget = clotheRepository.getClothe(gadget.getId());
+            if (!dbGadget.isEmpty()) {
 
-                if (accesory.getBrand()!= null) {
-                    accesoryDb.get().setBrand(accesory.getBrand());
-                }
-
-                if (accesory.getName()!= null) {
-                    accesoryDb.get().setName(accesory.getName());
+                if (gadget.getBrand()!= null) {
+                    dbGadget.get().setBrand(gadget.getBrand());
                 }
 
-                if (accesory.getCategory() != null) {
-                    accesoryDb.get().setCategory(accesory.getCategory());
+                if (gadget.getCategory() != null) {
+                    dbGadget.get().setCategory(gadget.getCategory());
                 }
 
-                if (accesory.getDescription() != null) {
-                    accesoryDb.get().setDescription(accesory.getDescription());
+                if (gadget.getName() != null) {
+                    dbGadget.get().setName(gadget.getName());
                 }
-                if (accesory.getPrice() != 0.0) {
-                    accesoryDb.get().setPrice(accesory.getPrice());
+
+                if (gadget.getDescription() != null) {
+                    dbGadget.get().setDescription(gadget.getDescription());
                 }
-                if (accesory.getQuantity() != 0) {
-                    accesoryDb.get().setQuantity(accesory.getQuantity());
+
+                if (gadget.getPrice() != 0.0) {
+                    dbGadget.get().setPrice(gadget.getPrice());
                 }
-                if (accesory.getPhotography() != null) {
-                    accesoryDb.get().setPhotography(accesory.getPhotography());
+
+                if (gadget.getQuantity() != 0) {
+                    dbGadget.get().setQuantity(gadget.getQuantity());
                 }
-                accesoryDb.get().setAvailability(accesory.isAvailability());
-                clotheRepository.update(accesoryDb.get());
-                return accesoryDb.get();
+
+                if (gadget.getPhotography() != null) {
+                    dbGadget.get().setPhotography(gadget.getPhotography());
+                }
+
+                dbGadget.get().setAvailability(gadget.isAvailability());
+                clotheRepository.update(dbGadget.get());
+                return dbGadget.get();
             } else {
-                return accesory;
+                return gadget;
             }
         } else {
-            return accesory;
+            return gadget;
         }
     }
 
     public boolean delete(Integer reference) {
-        Boolean aBoolean = getClothe(reference).map(accesory -> {
-            clotheRepository.delete(accesory);
+        Boolean aBoolean = getClothe(reference).map(gadget -> {
+            clotheRepository.delete(gadget);
             return true;
         }).orElse(false);
         return aBoolean;
+    }
+
+    public List<Gadget>findByPriceLessThanEqual(double price) {
+        return clotheRepository.findByPriceLessThanEqual(price);
+    }
+
+    public List<Gadget> findByDescriptionLike(String description) {
+        return clotheRepository.findByDescriptionLike(description);
     }
 }

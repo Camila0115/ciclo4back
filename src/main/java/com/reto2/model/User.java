@@ -3,18 +3,16 @@ package com.reto2.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 
 @Document(collection = "usuarios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements Comparable<User> {
+public class User {
     @Id
     private Integer id;
     private String identification;
@@ -27,23 +25,6 @@ public class User implements Comparable<User> {
     private String password;
     private String zone;
     private String type;
-
-
-    public Date getBirthtDay() {
-        return this.birthtDay;
-    }
-
-    public void setBirthtDay(Date birthtDay) {
-        this.birthtDay = birthtDay;
-    }
-
-    public String getMonthBirthtDay() {
-        return this.monthBirthtDay;
-    }
-
-    public void setMonthBirthtDay(String monthBirthtDay) {
-        this.monthBirthtDay = monthBirthtDay;
-    }
 
 
     public Integer getId() {
@@ -68,6 +49,22 @@ public class User implements Comparable<User> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getBirthtDay() {
+        return this.birthtDay;
+    }
+
+    public void setBirthtDay(Date birthtDay) {
+        this.birthtDay = birthtDay;
+    }
+
+    public String getMonthBirthtDay() {
+        return this.monthBirthtDay;
+    }
+
+    public void setMonthBirthtDay(String monthBirthtDay) {
+        this.monthBirthtDay = monthBirthtDay;
     }
 
     public String getAddress() {
@@ -116,11 +113,6 @@ public class User implements Comparable<User> {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    @Override
-    public int compareTo(User otherUser) {
-        return this.getId().compareTo(otherUser.getId());
     }
 
 }

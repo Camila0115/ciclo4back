@@ -32,4 +32,12 @@ public class GadgetRepository {
     public void delete(Gadget gadget) {
         gadgetCrudRepository.delete(gadget);
     }
+
+    public List<Gadget> findByPriceLessThanEqual(double price) {
+        return gadgetCrudRepository.findByPriceLessThanEqual(price);
+    }
+
+    public List<Gadget> findByDescriptionLike(String description) {
+        return gadgetCrudRepository.findByDescriptionLike(description);
+    }
 }

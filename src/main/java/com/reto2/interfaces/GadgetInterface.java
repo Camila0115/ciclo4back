@@ -3,6 +3,9 @@ package com.reto2.interfaces;
 import com.reto2.model.Gadget;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface GadgetInterface extends MongoRepository<Gadget, Integer> {
+import java.util.List;
 
+public interface GadgetInterface extends MongoRepository<Gadget, Integer> {
+    List<Gadget> findByPriceLessThanEqual(double price);
+    List<Gadget> findByDescriptionLike(String description);
 }
